@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-image: url("./images/background.jpeg");
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: left top;
+  background-size: cover;
+  width: 99vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card-grid--container {
+  user-select: none;
+  width: 99vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cards--container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.color--checkbox,
+.rarity--checkbox {
+  font-size: 16px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 5px;
+  color: white;
+  justify-content: center;
+}
+
+.rarity--checkbox {
+  margin-bottom: 10px;
+}
+
+.filter--btn {
+  appearance: none;
+}
+
+.filter--btn--label {
+  border-radius: 5px;
+  padding: 3px 15px;
+}
+
+.selected {
+  background-color: black;
+}
+
+.unselected {
+  color: black;
+
+  background-color: white;
+}
+
+.card--container {
+  padding: 0;
+  margin: 0;
+  width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.card--img {
+  width: 100%;
+  border-radius: 7px;
+}
+
+.card--btn {
+  border: none;
+  background-color: black;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  border-radius: 5px;
+  padding: 5px 12px;
+  margin: 1px;
 }
