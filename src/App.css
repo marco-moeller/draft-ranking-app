@@ -15,6 +15,7 @@ body {
 .card-grid--container {
   user-select: none;
   width: 99vw;
+  min-height: 85vh;
 }
 
 .cards--container {
@@ -129,4 +130,14 @@ body {
 
 .rotate {
   rotate: 90deg;
+}
+
+.footer {
+  color: white;
+  text-align: center;
+  margin: auto;
+  margin-top: 50px;
+  font-size: 12px;
+  font-weight: 300;
+  width: 50%;
 }

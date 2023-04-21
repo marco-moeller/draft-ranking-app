@@ -1,6 +1,7 @@
 import "./App.css";
 import CardGrid from "./components/CardGrid";
 import CardModal from "./components/CardModal";
+import Footer from "./components/Footer";
 import { useGlobalContext } from "./context";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
     <div className="App">
       <CardGrid />
       {showCardModal && <CardModal />}
+      <Footer />
     </div>
   );
 }
