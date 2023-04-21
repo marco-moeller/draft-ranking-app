@@ -119,65 +119,70 @@ const CardGrid = () => {
     }
   };
 
-  const setColor = (colors) => {
-    if (colors.length > 1) return "multicolor";
-
-    switch (colors[0]) {
-      case "W":
-        return "white";
-      case "U":
-        return "blue";
-      case "B":
-        return "black";
-      case "R":
-        return "red";
-      case "G":
-        return "green";
-      default:
-        return "colorless";
-    }
-  };
-
-  const transformCardData = (card) => {
-    return {
-      id: card.mtgo_id,
-      front: card.image_uris.normal,
-      back: "",
-      color: setColor(card.color_identity),
-      sides: 1,
-      rarity: card.rarity,
-    };
-  };
-
   useEffect(() => {
-    if (!cards.length)
-      Promise.all([
-        fetch(`${CREATURE_URL}`),
-        fetch(`${NO_CREATURE_URL}`),
-        fetch(`${DOUBLE_FACE_URL}`),
-      ])
-        .then(([res1, res2, res3]) =>
-          Promise.all([res1.json(), res2.json(), res3.json()])
-        )
-        .then(([cards1, cards2, cards3]) => {
-          setCards(
-            cards1.data
-              .map((card) => transformCardData(card))
-              .concat(cards2.data.map((card) => transformCardData(card)))
-              .concat(
-                cards3.data.map((card) => ({
-                  id: card.mtgo_id,
-                  front: card.card_faces[0].image_uris.normal,
-                  back: card.card_faces[1].image_uris.normal,
-                  color: setColor(card.color_identity),
-                  sides: 2,
-                  rarity: card.rarity,
-                }))
-              )
-          );
-        });
+    const setColor = (colors) => {
+      if (colors.length > 1) return "multicolor";
+
+      switch (colors[0]) {
+        case "W":
+          return "white";
+        case "U":
+          return "blue";
+        case "B":
+          return "black";
+        case "R":
+          return "red";
+        case "G":
+          return "green";
+        default:
+          return "colorless";
+      }
+    };
+
+    const transformCardData = (card) => {
+      return {
+        id: card.mtgo_id,
+        front: card.image_uris.normal,
+        back: "",
+        color: setColor(card.color_identity),
+        sides: 1,
+        rarity: card.rarity,
+      };
+    };
+    if (!cards.length) {
+      try {
+        Promise.all([
+          fetch(`${CREATURE_URL}`),
+          fetch(`${NO_CREATURE_URL}`),
+          fetch(`${DOUBLE_FACE_URL}`),
+        ])
+          .then(([res1, res2, res3]) =>
+            Promise.all([res1.json(), res2.json(), res3.json()])
+          )
+          .then(([cards1, cards2, cards3]) => {
+            setCards(
+              cards1.data
+                .map((card) => transformCardData(card))
+                .concat(cards2.data.map((card) => transformCardData(card)))
+                .concat(
+                  cards3.data.map((card) => ({
+                    id: card.mtgo_id,
+                    front: card.card_faces[0].image_uris.normal,
+                    back: card.card_faces[1].image_uris.normal,
+                    color: setColor(card.color_identity),
+                    sides: 2,
+                    rarity: card.rarity,
+                  }))
+                )
+            );
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     setLoading(false);
-  }, []);
+  }, [cards.length]);
 
   useEffect(() => {
     localStorage.setItem("momSetList", JSON.stringify(cards));
