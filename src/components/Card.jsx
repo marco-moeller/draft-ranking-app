@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useGlobalContext } from "../context";
 
 const Card = (props) => {
