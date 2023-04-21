@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../context";
 
 const Card = (props) => {
   const [side, setSide] = useState(props.card.front);
-
   const { updateSelectedCard, toggleShowModal } = useGlobalContext();
 
   const handleFlip = () => {
@@ -13,7 +12,7 @@ const Card = (props) => {
   };
 
   return (
-    <dir className="card--container">
+    <div className="card--container">
       <div className="card-btn--container">
         <button
           className="card--btn"
@@ -40,15 +39,6 @@ const Card = (props) => {
           {">>|"}
         </button>
       </div>
-      {props.card.sides === 2 && (
-        <button className="card--btn flip--btn" onClick={handleFlip}>
-          <img
-            className="flip--icon"
-            src={require("../images/flip.png")}
-            alt="Flip"
-          />
-        </button>
-      )}
       <img
         key={props.card.id}
         className="card--img"
@@ -58,8 +48,17 @@ const Card = (props) => {
           updateSelectedCard(props.card);
           toggleShowModal(true);
         }}
-      />
-    </dir>
+      />{" "}
+      {props.card.sides === 2 && (
+        <button className="card--btn flip--btn" onClick={handleFlip}>
+          <img
+            className="flip--icon"
+            src={require("../images/flip.png")}
+            alt="Flip"
+          />
+        </button>
+      )}
+    </div>
   );
 };
 

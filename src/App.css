@@ -71,8 +71,14 @@ body {
 }
 
 .card--img {
+  position: relative;
   width: 100%;
   border-radius: 7px;
+}
+
+.card--img:hover,
+.card--img--modal:hover {
+  cursor: pointer;
 }
 
 .card--btn {
@@ -98,6 +104,7 @@ body {
 
 .flip--btn:hover {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .flip--icon {
