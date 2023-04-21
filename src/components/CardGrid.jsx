@@ -203,7 +203,7 @@ const CardGrid = () => {
             <label
               htmlFor={color}
               className={
-                isColor(color)
+                isColor(color) && filterByColor.length
                   ? "filter--btn--label selected"
                   : "filter--btn--label unselected"
               }
@@ -231,7 +231,7 @@ const CardGrid = () => {
             <label
               htmlFor={rarity}
               className={
-                isRarity(rarity)
+                isRarity(rarity) && filterByRarity.length
                   ? "filter--btn--label selected"
                   : "filter--btn--label unselected"
               }
@@ -247,11 +247,8 @@ const CardGrid = () => {
             .filter((card) => isRarity(card.rarity) && isColor(card.color))
             .map((card) => (
               <Card
-                sides={card.sides}
                 key={card.id}
-                id={card.id}
-                front={card.front}
-                back={card.back}
+                card={card}
                 moveLeft={moveLeft}
                 moveRight={moveRight}
                 moveToFirst={moveToFirst}

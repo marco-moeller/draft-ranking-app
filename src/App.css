@@ -61,6 +61,7 @@ body {
 }
 
 .card--container {
+  position: relative;
   padding: 0;
   margin: 0;
   width: 250px;
@@ -81,4 +82,44 @@ body {
   border-radius: 5px;
   padding: 5px 12px;
   margin: 1px;
+}
+
+.flip--btn {
+  position: absolute;
+  margin: 0;
+  width: 35%;
+  border-radius: 50px;
+  background-color: transparent;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  opacity: 0;
+}
+
+.flip--btn:hover {
+  opacity: 0.8;
+}
+
+.flip--icon {
+  width: 100%;
+  background-color: white;
+  padding: 5px;
+  border-radius: 50px;
+}
+
+.modal--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.rotate {
+  rotate: 90deg;
 }
